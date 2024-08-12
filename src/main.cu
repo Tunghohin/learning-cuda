@@ -1,26 +1,30 @@
-// main.cpp
-// main.cpp
+#include <common.cuh>
+#include <new.h>
+#include <chrono>
 
-#include <algorithm>
-#include <exception>
-#include <type_traits>
-#include <iostream>
-#include <cstdio>
-#include <cuda_runtime.h>
-#include <helper_cuda.h>
-#include <thrust/host_vector.h>
-#include <thrust/device_vector.h>
-#include <thrust/universal_vector.h>
-#include <thrust/for_each.h>
-#include <thrust/generate.h>
-#include <thrust/iterator/counting_iterator.h>
-#include <numeric>
-#include <ranges>
-#include <concepts>
-
-#define DEVTID blockDim.x * blockIdx.x + threadIdx.x
+constexpr size_t N = 1000000;
+float* a_h;
+float* b_h; 
+float* out_h;
+float* a_d;
+float* b_d;
+float* out_d;
 
 auto main() -> int {
-    // thrust::universal_vector<int> a;
-    return 0;
+    a_h = (float*)malloc(N * sizeof(float));
+    b_h = (float*)malloc(N * sizeof(float));
+    out_h = (float*)malloc(N * sizeof(float));
+
+    cudaMalloc(&a_d, N * sizeof(float));
+    cudaMalloc(&b_d, N * sizeof(float));
+    cudaMalloc(&out_d, N * sizeof(float));
+
+    print_hello<<<1, 1>>>();
+
+    auto now = std::chrono::high_resolution_clock::now();
+    auto now_h = std::chrono::high_resolution_clock::now();
+
+
+    now = std::chrono::high_resolution_clock::now();
+    auto now_d = std::chrono::high_resolution_clock::now();
 }
