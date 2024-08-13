@@ -2,7 +2,7 @@
 #include <common.cuh>
 
 __global__ auto print_hello() -> void {
-    ::printf("Hello!");
+    ::printf("tid: %d, bid: %d: Hello!\n", threadIdx.x, blockIdx.x);
 }
 
 // auto main() -> int {
