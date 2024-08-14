@@ -1,11 +1,7 @@
 #include <common.cuh>
 
-__global__ auto reduce(float const* a, float* sum, size_t n) -> void {
-    // for (auto i = blockDim.x * blockIdx.x + threadIdx.x; i < n; i += gridDim.x * blockDim.x) {
-    //     atomicAdd(sum, a[i]);
-    // }
+__global__ auto reduce_kernel(float const* a, float* sum, size_t n) -> void {
     __shared__ float local[BLOCK_DIM];
-
     unsigned int tid = threadIdx.x;
     unsigned int i = blockDim.x * blockIdx.x + threadIdx.x;
     local[tid] = a[i];
