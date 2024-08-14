@@ -1,6 +1,6 @@
 #include <common.cuh>
 
-__global__ auto sum(float const* a, float* sum, size_t n) -> void {
+__global__ auto reduce(float const* a, float* sum, size_t n) -> void {
     // for (auto i = blockDim.x * blockIdx.x + threadIdx.x; i < n; i += gridDim.x * blockDim.x) {
     //     atomicAdd(sum, a[i]);
     // }
